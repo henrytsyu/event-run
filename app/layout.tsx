@@ -1,6 +1,9 @@
-import "./globals.css";
+import type { Metadata } from "next";
 
-export const metadata = {
+import "./globals.css";
+import { Toaster } from "@/components/ui/toaster";
+
+export const metadata: Metadata = {
   title: "Event Run",
   description: "Automatic score tallying system for checkpoint-based events",
 };
@@ -12,8 +15,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-background text-foreground">
+      <body>
         {children}
+        <Toaster />
       </body>
     </html>
   );
