@@ -11,11 +11,20 @@ import Link from "next/link";
 
 export default async function Home() {
   const supabase = createClient(cookies());
-  const { data } = await supabase
-    .from("participants")
-    .select(
-      "group_no, session_id, sessions(completed, created_at, events(name, users(display_name)))"
-    );
+  const { data } = await supabase.from("participants").select(`
+    group_no,
+    session_id,
+    sessions (
+      completed,
+      created_at,
+      events (
+        name,
+        users (
+          display_name
+        )
+      )
+    )
+  `);
 
   return (
     <main className="p-4">
@@ -34,13 +43,13 @@ export default async function Home() {
                   <Card>
                     <CardHeader>
                       <CardTitle>
-                        {record.sessions.events.name} by{" "}
-                        {record.sessions.events.users.display_name}
+                        {record.sessions!.events!.name} by{" "}
+                        {record.sessions!.events!.users!.display_name}
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
                       Group {record.group_no} |{" "}
-                      {new Date(record.sessions.created_at).toDateString()}
+                      {new Date(record.sessions!.created_at).toDateString()}
                     </CardContent>
                   </Card>
                 </Link>
