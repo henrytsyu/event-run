@@ -24,7 +24,7 @@ export default function Login() {
   };
 
   return (
-    <main className="h-screen flex items-center justify-center">
+    <main className="flex h-full items-center justify-center">
       <Card className="min-w-96">
         <CardHeader>
           <CardTitle className="flex justify-center">
