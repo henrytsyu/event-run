@@ -27,42 +27,40 @@ export default async function Home() {
   `);
 
   return (
-    <main className="p-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card className="w-full">
-          <CardHeader>
-            <CardTitle>My Events</CardTitle>
-            <CardDescription>
-              You have {data?.length} active event(s).
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            {data?.map((record, i) => {
-              return (
-                <Link href={`/event/${record.session_id}`} key={i}>
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>
-                        {record.sessions!.events!.name} by{" "}
-                        {record.sessions!.events!.users!.display_name}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      Group {record.group_no} |{" "}
-                      {new Date(record.sessions!.created_at).toDateString()}
-                    </CardContent>
-                  </Card>
-                </Link>
-              );
-            })}
-          </CardContent>
-        </Card>
-        <Card className="w-full">
-          <CardHeader>
-            <CardTitle>Join New Event</CardTitle>
-          </CardHeader>
-        </Card>
-      </div>
-    </main>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 m-4">
+      <Card className="w-full">
+        <CardHeader>
+          <CardTitle>My Events</CardTitle>
+          <CardDescription>
+            You have {data?.length} active event(s).
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          {data?.map((record, i) => {
+            return (
+              <Link href={`/event/${record.session_id}`} key={i}>
+                <Card>
+                  <CardHeader>
+                    <CardTitle>
+                      {record.sessions!.events!.name} by{" "}
+                      {record.sessions!.events!.users!.display_name}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    Group {record.group_no} |{" "}
+                    {new Date(record.sessions!.created_at).toDateString()}
+                  </CardContent>
+                </Card>
+              </Link>
+            );
+          })}
+        </CardContent>
+      </Card>
+      <Card className="w-full">
+        <CardHeader>
+          <CardTitle>Join New Event</CardTitle>
+        </CardHeader>
+      </Card>
+    </div>
   );
 }
