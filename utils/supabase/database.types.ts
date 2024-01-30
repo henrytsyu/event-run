@@ -13,8 +13,8 @@ export interface Database {
         Row: {
           duration_seconds: number | null
           group_size: number | null
-          id: number
-          name: string | null
+          id: string
+          name: string
           no_groups: number | null
           organiser_id: string
           participant_limit: number | null
@@ -23,8 +23,8 @@ export interface Database {
         Insert: {
           duration_seconds?: number | null
           group_size?: number | null
-          id?: number
-          name?: string | null
+          id?: string
+          name: string
           no_groups?: number | null
           organiser_id: string
           participant_limit?: number | null
@@ -33,8 +33,8 @@ export interface Database {
         Update: {
           duration_seconds?: number | null
           group_size?: number | null
-          id?: number
-          name?: string | null
+          id?: string
+          name?: string
           no_groups?: number | null
           organiser_id?: string
           participant_limit?: number | null
@@ -53,19 +53,19 @@ export interface Database {
       participants: {
         Row: {
           group_no: number
-          session_id: number
+          session_id: string
           statistics: Json
           user_id: string
         }
         Insert: {
           group_no: number
-          session_id: number
+          session_id: string
           statistics: Json
           user_id: string
         }
         Update: {
           group_no?: number
-          session_id?: number
+          session_id?: string
           statistics?: Json
           user_id?: string
         }
@@ -90,20 +90,20 @@ export interface Database {
         Row: {
           completed: boolean
           created_at: string
-          event_id: number
-          id: number
+          event_id: string
+          id: string
         }
         Insert: {
           completed?: boolean
           created_at?: string
-          event_id: number
-          id?: number
+          event_id: string
+          id?: string
         }
         Update: {
           completed?: boolean
           created_at?: string
-          event_id?: number
-          id?: number
+          event_id?: string
+          id?: string
         }
         Relationships: [
           {
