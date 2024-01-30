@@ -11,20 +11,30 @@ import Link from "next/link";
 
 export default async function Home() {
   const supabase = createClient(cookies());
-  const { data } = await supabase.from("participants").select(`
-    group_no,
-    session_id,
-    sessions (
-      completed,
-      created_at,
-      events (
-        name,
-        users (
-          display_name
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  const { data } = await supabase
+    .from("participants")
+    .select(
+      `
+        user_id,
+        session_id,
+        sessions (
+          completed,
+          created_at,
+          events (
+            name,
+            users (
+              display_name
+            )
+          )
         )
-      )
+      `
     )
-  `);
+    .eq("user_id", user!.id);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 m-4">
@@ -41,13 +51,12 @@ export default async function Home() {
               <Link href={`/event/${record.session_id}`} key={i}>
                 <Card>
                   <CardHeader>
-                    <CardTitle>
-                      {record.sessions!.events!.name} by{" "}
+                    <CardTitle>{record.sessions!.events!.name}</CardTitle>
+                    <CardDescription>
                       {record.sessions!.events!.users!.display_name}
-                    </CardTitle>
+                    </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    Group {record.group_no} |{" "}
                     {new Date(record.sessions!.created_at).toDateString()}
                   </CardContent>
                 </Card>
