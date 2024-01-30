@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
-import AppBar from "./appBar";
 
 export const metadata: Metadata = {
   title: "Event Run",
@@ -17,7 +16,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="flex flex-col h-screen">
-        <AppBar />
         {children}
         <Toaster />
       </body>
