@@ -45,7 +45,7 @@ export default async function EventSession({
     .single();
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 m-4">
+    <div className="p-4 flex flex-col space-y-4">
       <Card>
         <CardHeader>
           <CardTitle>{data!.sessions!.events!.name}</CardTitle>

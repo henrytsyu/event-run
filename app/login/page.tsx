@@ -36,7 +36,7 @@ export default function Login() {
 
   return (
     <main className="flex h-full items-center justify-center">
-      <Card className="min-w-96">
+      <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle className="flex justify-center">
             Welcome to Event Run!
@@ -44,7 +44,6 @@ export default function Login() {
         </CardHeader>
         <CardContent className="space-y-4">
           <Button
-            variant="outline"
             className="w-full"
             onClick={() => {
               _loginWithGoogle();
@@ -56,19 +55,19 @@ export default function Login() {
           <form action={_loginWithEmail} className="space-y-4">
             <Input name="email" type="email" placeholder="Email" />
             <Input name="password" type="password" placeholder="Password" />
-            <Button type="submit" className="w-full">
+            <Button variant="secondary" type="submit" className="w-full">
               Login
             </Button>
           </form>
           <Separator />
           <div className="flex space-x-4">
             <Link href="/register" className="w-full">
-              <Button variant="outline" className="w-full">
+              <Button variant="secondary" className="w-full">
                 Create account
               </Button>
             </Link>
             <Link href="/forget-password" className="w-full">
-              <Button variant="outline" className="w-full">
+              <Button variant="secondary" className="w-full">
                 Forget password
               </Button>
             </Link>

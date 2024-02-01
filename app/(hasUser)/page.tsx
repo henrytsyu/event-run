@@ -37,7 +37,7 @@ export default async function Home() {
     .eq("user_id", user!.id);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 m-4">
+    <div className="p-4 flex flex-col space-y-4">
       <Card className="w-full">
         <CardHeader>
           <CardTitle>My Events</CardTitle>
