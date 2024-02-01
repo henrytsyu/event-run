@@ -7,9 +7,20 @@ import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { useToast } from "@/components/ui/use-toast";
+import { createClient } from "@/utils/supabase/client";
 
 export default function Login() {
   const { toast } = useToast();
+
+  const _loginWithGoogle = async () => {
+    const supabase = createClient();
+    await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: `${location.origin}/auth/callback`,
+      },
+    });
+  };
 
   const _loginWithEmail = async (formData: FormData) => {
     const email: string = formData.get("email")?.toString()!;
@@ -32,7 +43,13 @@ export default function Login() {
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <Button variant="outline" className="w-full">
+          <Button
+            variant="outline"
+            className="w-full"
+            onClick={() => {
+              _loginWithGoogle();
+            }}
+          >
             Continue with Google
           </Button>
           <Separator />
