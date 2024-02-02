@@ -39,7 +39,7 @@ export default async function OrganiserHome() {
         <CardContent className="flex flex-col space-y-4">
           {liveEvents?.map((record, i) => {
             return (
-              <Link href={`/event/${record.id}`} key={i}>
+              <Link href={`/session/${record.id}`} key={i}>
                 <Card>
                   <CardHeader>
                     <CardTitle>{record.events!.name}</CardTitle>

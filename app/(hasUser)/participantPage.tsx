@@ -48,7 +48,7 @@ export default async function ParticipantHome() {
         <CardContent>
           {data?.map((record, i) => {
             return (
-              <Link href={`/event/${record.session_id}`} key={i}>
+              <Link href={`/session/${record.session_id}`} key={i}>
                 <Card>
                   <CardHeader>
                     <CardTitle>{record.sessions!.events!.name}</CardTitle>
