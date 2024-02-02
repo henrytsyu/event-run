@@ -5,14 +5,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableRow,
-} from "@/components/ui/table";
+import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { createClient } from "@/utils/supabase/server";
 import { cookies } from "next/headers";
+import Checkpoint from "./checkpoint";
 
 export default async function EventSession({
   params: { sessionId },
@@ -64,12 +60,7 @@ export default async function EventSession({
           </Table>
         </CardContent>
       </Card>
-      <Card>
-        <CardHeader>
-          <CardTitle>Checkpoint</CardTitle>
-        </CardHeader>
-        <CardContent>Enter 6 digit pin code</CardContent>
-      </Card>
+      <Checkpoint />
     </div>
   );
 }
