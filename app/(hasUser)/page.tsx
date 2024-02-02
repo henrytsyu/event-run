@@ -1,13 +1,7 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { createClient } from "@/utils/supabase/server";
 import { cookies } from "next/headers";
-import Link from "next/link";
+import ParticipantHome from "./participantPage";
+import { createClient } from "@/utils/supabase/server";
+import OrganiserHome from "./organiserPage";
 
 export default async function Home() {
   const supabase = createClient(cookies());
@@ -17,59 +11,10 @@ export default async function Home() {
   } = await supabase.auth.getUser();
 
   const { data } = await supabase
-    .from("participants")
-    .select(
-      `
-        user_id,
-        session_id,
-        sessions (
-          completed,
-          created_at,
-          events (
-            name,
-            users (
-              display_name
-            )
-          )
-        )
-      `
-    )
-    .eq("user_id", user!.id);
+    .from("users")
+    .select("id, is_organiser")
+    .eq("id", user!.id)
+    .single();
 
-  return (
-    <div className="p-4 flex flex-col space-y-4">
-      <Card className="w-full">
-        <CardHeader>
-          <CardTitle>My Events</CardTitle>
-          <CardDescription>
-            You have {data?.length} active event(s).
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          {data?.map((record, i) => {
-            return (
-              <Link href={`/event/${record.session_id}`} key={i}>
-                <Card>
-                  <CardHeader>
-                    <CardTitle>{record.sessions!.events!.name}</CardTitle>
-                    <CardDescription>
-                      {record.sessions!.events!.users!.display_name}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    {new Date(record.sessions!.created_at).toDateString()}
-                  </CardContent>
-                </Card>
-              </Link>
-            );
-          })}
-        </CardContent>
-      </Card>
-      <Card className="w-full">
-        <CardHeader>
-          <CardTitle>Join New Event</CardTitle>
-        </CardHeader>
-      </Card>
-    </div>
-  );
+  return (data!.is_organiser) ? <OrganiserHome /> : <ParticipantHome />;
 }
