@@ -28,7 +28,8 @@ export default async function ParticipantHome() {
           events (
             name,
             users (
-              display_name
+              display_name,
+              email
             )
           )
         )
@@ -53,7 +54,8 @@ export default async function ParticipantHome() {
                   <CardHeader>
                     <CardTitle>{record.sessions!.events!.name}</CardTitle>
                     <CardDescription>
-                      {record.sessions!.events!.users!.display_name}
+                      {record.sessions!.events!.users!.display_name ??
+                        record.sessions!.events!.users!.email}
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
