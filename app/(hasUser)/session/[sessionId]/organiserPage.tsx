@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Table,
@@ -9,8 +8,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { createClient } from "@/utils/supabase/server";
-import { Edit, Trash2 } from "lucide-react";
 import { cookies } from "next/headers";
+import OrganiserActions from "./organiserActions";
 
 export default async function OrganiserSession({
   sessionId,
@@ -34,6 +33,8 @@ export default async function OrganiserSession({
           name
         ),
         participants (
+          session_id,
+          user_id,
           group_no,
           statistics,
           users (
@@ -80,13 +81,8 @@ export default async function OrganiserSession({
                   <TableCell>
                     {JSON.stringify(participant.statistics)}
                   </TableCell>
-                  <TableCell className="flex space-x-4">
-                    <Button variant="secondary" size="icon">
-                      <Edit />
-                    </Button>
-                    <Button variant="destructive" size="icon">
-                      <Trash2 />
-                    </Button>
+                  <TableCell>
+                    <OrganiserActions participant={participant} />
                   </TableCell>
                 </TableRow>
               ))}
