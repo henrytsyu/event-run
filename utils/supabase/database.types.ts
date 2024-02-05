@@ -118,16 +118,19 @@ export interface Database {
       users: {
         Row: {
           display_name: string | null
+          email: string
           id: string
           is_organiser: boolean
         }
         Insert: {
           display_name?: string | null
+          email: string
           id: string
           is_organiser?: boolean
         }
         Update: {
           display_name?: string | null
+          email?: string
           id?: string
           is_organiser?: boolean
         }
