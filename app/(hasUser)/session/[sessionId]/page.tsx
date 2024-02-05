@@ -1,7 +1,7 @@
 import { createClient } from "@/utils/supabase/server";
 import { cookies } from "next/headers";
-import ParticipantSession from "./participantPage";
-import OrganiserSession from "./organiserPage";
+import ParticipantSession from "./(participant)/participantPage";
+import OrganiserSession from "./(organiser)/organiserPage";
 
 export default async function Session({
   params: { sessionId },
