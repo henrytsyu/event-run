@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import Image from "next/image";
+import london from "@/images/london.jpg";
 
 export const metadata: Metadata = {
   title: "Event Run",
@@ -15,9 +17,19 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="flex flex-col h-screen bg-slate-50">
-        {children}
-        <Toaster />
+      <body className="relative overflow-hidden">
+        <Image
+          alt="London"
+          src={london}
+          placeholder="blur"
+          quality={100}
+          fill
+          className="w-screen absolute -z-10"
+        />
+        <div className="flex flex-col h-screen overflow-auto">
+          {children}
+          <Toaster />
+        </div>
       </body>
     </html>
   );
