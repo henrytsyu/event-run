@@ -17,6 +17,17 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL("/", req.url));
   }
 
+  if (user && req.nextUrl.pathname.startsWith("/event")) {
+    const { data } = await supabase
+      .from("users")
+      .select("is_organiser")
+      .eq("id", user.id)
+      .single();
+    if (!data!.is_organiser) {
+      return NextResponse.redirect(new URL("/", req.url));
+    }
+  }
+
   if (
     !user &&
     req.nextUrl.pathname !== "/login" &&
