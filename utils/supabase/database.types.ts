@@ -6,12 +6,12 @@ export type Json =
   | { [key: string]: Json | undefined }
   | Json[]
 
-export interface Database {
+export type Database = {
   public: {
     Tables: {
       events: {
         Row: {
-          duration_seconds: number | null
+          duration_minutes: number | null
           group_size: number | null
           id: string
           name: string
@@ -21,7 +21,7 @@ export interface Database {
           score_metric: Json | null
         }
         Insert: {
-          duration_seconds?: number | null
+          duration_minutes?: number | null
           group_size?: number | null
           id?: string
           name: string
@@ -31,7 +31,7 @@ export interface Database {
           score_metric?: Json | null
         }
         Update: {
-          duration_seconds?: number | null
+          duration_minutes?: number | null
           group_size?: number | null
           id?: string
           name?: string
