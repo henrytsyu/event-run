@@ -19,6 +19,7 @@ export type Database = {
           organiser_id: string
           participant_limit: number | null
           score_metric: Json | null
+          statistics: Json
         }
         Insert: {
           duration_minutes?: number | null
@@ -29,6 +30,7 @@ export type Database = {
           organiser_id: string
           participant_limit?: number | null
           score_metric?: Json | null
+          statistics?: Json
         }
         Update: {
           duration_minutes?: number | null
@@ -39,6 +41,7 @@ export type Database = {
           organiser_id?: string
           participant_limit?: number | null
           score_metric?: Json | null
+          statistics?: Json
         }
         Relationships: [
           {
