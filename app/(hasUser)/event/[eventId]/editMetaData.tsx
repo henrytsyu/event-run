@@ -11,7 +11,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { createClient } from "@/utils/supabase/client";
-import { Json } from "@/utils/supabase/database.types";
 import { User } from "@supabase/supabase-js";
 import { useRouter } from "next/navigation";
 
@@ -28,7 +27,6 @@ export default function EditMetaData({
     group_size: number | null;
     no_groups: number | null;
     duration_minutes: number | null;
-    score_metric: Json;
   };
 }) {
   const router = useRouter();
