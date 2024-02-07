@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="relative overflow-hidden">
+      <body className="relative">
         <Image
           alt="London"
           src={london}
