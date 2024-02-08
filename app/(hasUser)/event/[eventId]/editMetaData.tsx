@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
+import { useToast } from "@/components/ui/use-toast";
 import { createClient } from "@/utils/supabase/client";
 import { User } from "@supabase/supabase-js";
 import { useRouter } from "next/navigation";
@@ -33,6 +34,8 @@ export default function EditMetaData({
 
   const supabase = createClient();
 
+  const { toast } = useToast();
+
   const _editMetaData = async (formData: FormData) => {
     const newMetaData = {
       participant_limit: parseInt(
@@ -48,6 +51,9 @@ export default function EditMetaData({
       .eq("id", eventId)
       .eq("organiser_id", user.id);
     router.refresh();
+    toast({
+      description: "Event settings updated.",
+    });
   };
 
   const eventMetadata: [string, string, number | null][] = [
