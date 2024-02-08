@@ -1,7 +1,7 @@
 import { createClient } from "@/utils/supabase/server";
 import { cookies } from "next/headers";
 import EditMetaData from "./editMetaData";
-import EditStatistics from "./editStatistics";
+import Fields from "./fields";
 
 export default async function Session({
   params: { eventId },
@@ -23,7 +23,6 @@ export default async function Session({
         group_size,
         no_groups,
         duration_minutes,
-        statistics,
         score_metric
       `
     )
@@ -34,11 +33,7 @@ export default async function Session({
   return (
     <div className="p-4 flex flex-col space-y-4">
       <EditMetaData eventId={eventId} user={user!} data={data!} />
-      <EditStatistics
-        eventId={eventId}
-        user={user!}
-        statistics={data!.statistics}
-      />
+      <Fields eventId={eventId} />
     </div>
   );
 }
