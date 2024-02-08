@@ -2,7 +2,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import EditName from "./editName";
 import { createClient } from "@/utils/supabase/server";
 import { cookies } from "next/headers";
-import SwitchRole from "./switchRole";
 
 export default async function Settings() {
   const supabase = createClient(cookies());
@@ -24,7 +23,6 @@ export default async function Settings() {
       </CardHeader>
       <CardContent className="flex flex-col sm:flex-row space-x-0 space-y-4 sm:space-x-4 sm:space-y-0">
         <EditName name={data!.display_name ?? data!.email} id={user!.id} />
-        <SwitchRole isOrganiser={data!.is_organiser} id={user!.id} />
       </CardContent>
     </Card>
   );
