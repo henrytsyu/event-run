@@ -37,20 +37,22 @@ export default async function OrganiserHome() {
           <CardTitle>My Live Events</CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col space-y-4">
-          {liveEvents?.map((record, i) => {
-            return (
-              <Link href={`/session/${record.id}`} key={i}>
-                <Card>
-                  <CardHeader>
-                    <CardTitle>{record.events!.name}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    {new Date(record.created_at).toDateString()}
-                  </CardContent>
-                </Card>
-              </Link>
-            );
-          })}
+          {liveEvents
+            ?.filter((record) => record.events)
+            .map((record, i) => {
+              return (
+                <Link href={`/session/${record.id}`} key={i}>
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>{record.events?.name}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      {new Date(record.created_at).toDateString()}
+                    </CardContent>
+                  </Card>
+                </Link>
+              );
+            })}
         </CardContent>
       </Card>
       <Card>
