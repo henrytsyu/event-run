@@ -19,7 +19,6 @@ export type Database = {
           organiser_id: string
           participant_limit: number | null
           score_metric: Json | null
-          statistics: Json
         }
         Insert: {
           duration_minutes?: number | null
@@ -30,7 +29,6 @@ export type Database = {
           organiser_id: string
           participant_limit?: number | null
           score_metric?: Json | null
-          statistics?: Json
         }
         Update: {
           duration_minutes?: number | null
@@ -41,7 +39,6 @@ export type Database = {
           organiser_id?: string
           participant_limit?: number | null
           score_metric?: Json | null
-          statistics?: Json
         }
         Relationships: [
           {
@@ -49,6 +46,35 @@ export type Database = {
             columns: ["organiser_id"]
             isOneToOne: false
             referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      fields: {
+        Row: {
+          default_value: number
+          event_id: string
+          icon: string
+          name: string
+        }
+        Insert: {
+          default_value: number
+          event_id: string
+          icon: string
+          name: string
+        }
+        Update: {
+          default_value?: number
+          event_id?: string
+          icon?: string
+          name?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fields_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "events"
             referencedColumns: ["id"]
           }
         ]
